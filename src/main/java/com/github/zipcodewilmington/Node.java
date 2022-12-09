@@ -2,19 +2,21 @@ package com.github.zipcodewilmington;
 
 public class Node{
     //public class Node<E extends Comparable <E>> implements Comparable<Node<E>> {
-    int data;
+    int value;
+
+
 
     String key;
     Node next;
 
-    Node(String key, int data) {
+    Node(String key, int value) {
         this.key = key;
-        this.data = data;
+        this.value = value;
         this.next = null;
     }
 
-    public int getData() {
-        return data;
+    public int getValue() {
+        return value;
     }
 
     public Node getNext() {
@@ -25,8 +27,16 @@ public class Node{
         next = node;
     }
 
-    public void setData(int data) {
-        this.data = data;
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }
 

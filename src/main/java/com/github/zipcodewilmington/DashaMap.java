@@ -6,13 +6,21 @@ package com.github.zipcodewilmington;
  * @date 10/21/19 9:05 AM
  */
 public class DashaMap {
-    public DashaMap() {}
+
 
     SinglyLinkedList[] array = new SinglyLinkedList[26];
+    public DashaMap() {
+        for (int i = 0; i < array.length; i++) {
+            SinglyLinkedList list = new SinglyLinkedList();
+            array[i] = list;
+        }
+    }
+
 
     int charToIndex(char ch) {
         return (ch - 'a');
     }
+
 
     private char HashFunctionOne(String input) {
         input = input.toLowerCase();
@@ -24,33 +32,55 @@ public class DashaMap {
     }
 
 
-    public void set(String key, String value) {
-        SinglyLinkedList list = new SinglyLinkedList();
-        int pos = charToIndex(HashFunctionOne(value));
-//        array[pos] = list.add();
+    public void set(String key, int value) {
+
+        int pos = charToIndex(HashFunctionOne(key));
+//        if(array[pos].contains(key)) {
+//            this.delete(key);
+//        }
+
+        array[pos].add(key,value);
+
+
     }
 
-//    public String delete(String key) {
-//        return null;
-//    }
-//
-//
-//    public String get(String key) {
-//        return null;
-//    }
-//
-//
-//    public boolean isEmpty() {
-//        return false;
-//    }
-//
-//
-//    public long size() {
-//        return 0;
-//    }
-//
-//
-//    public boolean bucketSize(String key) {
-//        return false;
-//    }
+    public void delete(String key) { //return string?
+        int pos = charToIndex(HashFunctionOne(key));
+        int listPos = array[pos].getPosition(key);
+        array[pos].remove(listPos);
+//        if(this.bucketSize(key) == 0){
+//            array[pos] = null;
+//        }
+    }
+
+
+    public int get(String key) {
+        int pos = charToIndex(HashFunctionOne(key));
+        int listPos = array[pos].getPosition(key);
+        return array[pos].getNodeData(listPos);
+    }
+
+
+    public boolean isEmpty() {
+        return size() == 0;
+    }
+
+
+    public long size() {
+        int count = 0;
+        for (int i = 0; i < array.length; i++) {
+            if(array[i].head != null) {
+              count++;
+            }
+        }
+        return count;
+    }
+
+    public int bucketSize(String key) {
+        int pos = charToIndex(HashFunctionOne(key));
+        if (array[pos] == null) {
+            return 0;
+        }
+        return array[pos].getLength();
+    }
 }

@@ -27,11 +27,11 @@ public class SinglyLinkedList {
             length++;
         }
 
-        public int getPosition(int data) {
+        public int getPosition(String key) {
             Node temp = head;
             int pos = 0;
             while (temp != null) {
-                if (temp.getData() == data) {
+                if (temp.getKey().equals(key)) {
                     return pos;
                 }
                 pos++;
@@ -57,10 +57,10 @@ public class SinglyLinkedList {
             return length;
         }
 
-        public boolean contains(int data) {
+        public boolean contains(String key) {
             Node temp = head;
             while (temp != null) {
-                if (temp.getData() == data) {
+                if (temp.getKey() == key) {
                     return true;
                 }
                 temp = temp.getNext();
@@ -73,7 +73,7 @@ public class SinglyLinkedList {
             for (int i = 0; i < position; i++) {
                 temp = temp.getNext();
             }
-            return temp.getData();
+            return temp.getValue();
         }
 
         public void setNodeData(int position, int data) {
@@ -81,7 +81,7 @@ public class SinglyLinkedList {
             for (int i = 0; i < position; i++) {
                 temp = temp.getNext();
             }
-            temp.setData(data);
+            temp.setValue(data);
         }
 
     }
