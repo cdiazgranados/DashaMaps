@@ -1,5 +1,10 @@
 package com.github.zipcodewilmington;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 /**
  * @author xtofer
  * @version 1.0.0
@@ -83,4 +88,19 @@ public class DashaMap {
         }
         return array[pos].getLength();
     }
+
+    public void readFromFile() throws FileNotFoundException {
+        try (BufferedReader br = new BufferedReader(new FileReader("word-list.txt"))) {
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split("\\s+");
+                String key = parts[0];
+                int value = Integer.parseInt(parts[1]);
+                this.set(key, value);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

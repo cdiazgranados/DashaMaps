@@ -3,6 +3,8 @@ package com.github.zipcodewilmington;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.FileNotFoundException;
+
 /**
  * @author xtofer
  * @version 1.0.0
@@ -105,6 +107,28 @@ public class DashaMapTest {
         dm.set("acorn", 5);
         int expected = 5;
         int actual = dm.get("acorn");
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testReadFromFile() throws FileNotFoundException {
+        DashaMap dm = new DashaMap();
+        dm.readFromFile();
+
+        int expected = 2;
+        int actual = dm.get("any");
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testReadFromFile_get() throws FileNotFoundException {
+        DashaMap dm = new DashaMap();
+        dm.readFromFile();
+
+        int expected = 88;
+        int actual = dm.get("having");
 
         Assert.assertEquals(expected, actual);
     }
